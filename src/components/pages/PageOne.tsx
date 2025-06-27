@@ -1,4 +1,3 @@
-
 'use client';
 
 import CountdownTimer from '@/components/CountdownTimer';
@@ -9,11 +8,11 @@ const PageOne = () => {
   return (
     <div className="scrapbook-page">
       <h1 className="text-4xl md:text-5xl font-headline text-primary-foreground mb-4">
-        Detik-Detik Menuju Keajaibanmu, {BIRTHDAY_TARGET_NAME}!
+        Menuju Hari Spesialmu, {BIRTHDAY_TARGET_NAME}
       </h1>
       <CountdownTimer />
       <p className="text-xl md:text-2xl font-body text-accent mt-6">
-        Hai {BIRTHDAY_TARGET_NAME}... setiap detik adalah langkah menuju hari istimewamu!
+        Waktu terus berjalan... dan bentar lagi, momen yang kita tunggu-tunggu akhirnya datang juga.
       </p>
       <div className="absolute bottom-4 right-4 font-headline text-sm text-primary-foreground/50">Page 1</div>
     </div>

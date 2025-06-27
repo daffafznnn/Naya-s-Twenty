@@ -43,7 +43,7 @@ const CountdownTimer: React.FC = () => {
     return (
       <div className="text-center p-4 bg-primary/20 rounded-lg shadow-md">
         <p className="text-2xl font-headline text-accent">Momen Spesial {BIRTHDAY_TARGET_NAME} Telah Tiba!</p>
-        <p className="text-lg font-body text-primary-foreground">Selamat Ulang Tahun yang ke-20! 🎉</p>
+        <p className="text-lg font-body text-primary-foreground">Happy level up ke-20 sayang! 🎉</p>
       </div>
     );
   }

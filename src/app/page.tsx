@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -79,11 +78,21 @@ export default function ScrapbookApp() {
   const handleEntryInteraction = async () => {
     setHasInteractedForEntry(true);
     const contextReady = await ensureAudioContext();
-    if (contextReady && bgMusicPlayer && !isMuted && bgMusicPlayer.state !== "started") {
+    
+    // Set isMuted to false to enable audio
+    setIsMuted(false);
+    
+    if (contextReady && bgMusicPlayer) {
       try {
         await bgMusicPlayer.start();
+        console.log("Background music started on entry interaction");
       } catch (e) {
         console.error("Error starting background music on initial interaction:", e);
+        toast({
+          title: "Audio Error",
+          description: "Could not start background music. Please try unmuting manually.",
+          variant: "destructive",
+        });
       }
     }
   };
@@ -183,9 +192,9 @@ export default function ScrapbookApp() {
               className="bg-accent hover:bg-accent/90 text-accent-foreground font-headline px-10 py-5 text-2xl rounded-full shadow-xl transform hover:scale-105 transition-transform duration-300 ease-in-out"
               aria-label={`Start ${BIRTHDAY_TARGET_NAME}'s Birthday Scrapbook Experience`}
             >
-              Masuki Duniamu! <Heart className="inline-block ml-2 w-5 h-5" />
+              Klik ini yaa!! <Heart className="inline-block ml-2 w-5 h-5" />
             </Button>
-            <p className="mt-6 text-sm text-muted-foreground">Psst... nyalakan suara untuk pengalaman penuh!</p>
+            <p className="mt-6 text-sm text-muted-foreground">nyalain suara nya dong biar lucu pas bukanya hehe</p>
           </>
         ) : (
           <p className="text-lg md:text-xl font-body text-primary-foreground/80 my-6 max-w-md">
@@ -205,30 +214,39 @@ export default function ScrapbookApp() {
         </div>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 flex justify-between items-center p-3 md:p-5 bg-background/80 backdrop-blur-sm shadow-2xl border-t border-primary/30 z-50">
-        <Button 
-          onClick={prevPage} 
-          disabled={currentPage === 1} 
-          variant="ghost" 
-          size="lg" 
-          aria-label="Previous Page"
-          className="text-primary-foreground hover:text-accent disabled:opacity-30 rounded-full p-3"
-        >
-          <ChevronLeft size={36} strokeWidth={1.5}/>
-        </Button>
-        <span className="font-headline text-lg text-primary-foreground">
-          {currentPage} / {totalPages}
-        </span>
-        <Button 
-          onClick={nextPage} 
-          disabled={currentPage === totalPages} 
-          variant="ghost" 
-          size="lg" 
-          aria-label="Next Page"
-          className="text-primary-foreground hover:text-accent disabled:opacity-30 rounded-full p-3"
-        >
-          <ChevronRight size={36} strokeWidth={1.5}/>
-        </Button>
+      <div className="fixed bottom-0 left-0 right-0 flex flex-col items-center p-3 md:p-5 bg-background/80 backdrop-blur-sm shadow-2xl border-t border-primary/30 z-50">
+        <div className="w-full flex justify-between items-center">
+          <Button 
+            onClick={prevPage} 
+            disabled={currentPage === 1} 
+            variant="ghost" 
+            size="lg" 
+            aria-label="Previous Page"
+            className="text-primary-foreground hover:text-accent disabled:opacity-30 rounded-full p-3"
+          >
+            <ChevronLeft size={36} strokeWidth={1.5}/>
+          </Button>
+          <span className="font-headline text-lg text-primary-foreground">
+            {currentPage} / {totalPages}
+          </span>
+          <Button 
+            onClick={nextPage} 
+            disabled={currentPage === totalPages} 
+            variant="ghost" 
+            size="lg" 
+            aria-label="Next Page"
+            className="text-primary-foreground hover:text-accent disabled:opacity-30 rounded-full p-3"
+          >
+            <ChevronRight size={36} strokeWidth={1.5}/>
+          </Button>
+        </div>
+        <div className="text-xs text-muted-foreground/60 flex items-center gap-1 mt-2 mb-1">
+          Made with <Heart size={12} className="text-accent fill-accent animate-pulse" /> by 
+          <a href="https://github.com/daffafznnn" target="_blank" rel="noopener noreferrer" 
+             className="font-medium hover:text-accent transition-colors">
+            daffafznnn
+          </a>
+        </div>
       </div>
 
       <Button

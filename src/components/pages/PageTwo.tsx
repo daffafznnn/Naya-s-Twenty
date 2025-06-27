@@ -7,12 +7,12 @@ import HeartIcon from '@/components/HeartIcon';
 const PageTwo = () => {
   return (
     <div className="scrapbook-page">
-      <h2 className="text-3xl md:text-4xl font-headline text-primary-foreground mb-8">Potret Kisah Kita</h2>
+      <h2 className="text-3xl md:text-4xl font-headline text-primary-foreground mb-8">Potret Kita Berdua Hahaha...</h2>
       
       <div className="relative mb-8">
         <div className="tilted-image transform -rotate-6">
           <Image 
-            src="https://placehold.co/300x400.png" 
+            src="https://i.ibb.co/QFt9Wwt5/IMG-20250606-WA0089.jpg" 
             alt="Foto Kita Berdua" 
             width={280} 
             height={380}

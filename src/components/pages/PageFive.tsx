@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -56,19 +55,33 @@ const PageFive = () => {
       }
     }
   };
+  // Function to increase the volume
+  const adjustVolume = (value: number) => {
+    if (audioPlayer) {
+      audioPlayer.volume.value = value;
+    }
+  };
+
+  // Set a slightly higher volume when player is ready
+  useEffect(() => {
+    if (audioPlayer && isAudioReady) {
+      // Increase by 6dB (makes it about 2x louder)
+      adjustVolume(6);
+    }
+  }, [audioPlayer, isAudioReady]);
 
   return (
     <div className="scrapbook-page">
-      <h2 className="text-3xl md:text-4xl font-headline text-primary-foreground mb-6">Dari Lubuk Hatiku...</h2>
+      <h2 className="text-3xl md:text-4xl font-headline text-primary-foreground mb-6">Sedikit dari Apa yang Aku Rasain</h2>
       
-      <div className="bg-white/80 p-6 rounded-lg shadow-xl max-w-lg text-gray-700 text-left space-y-4 font-body text-lg leading-relaxed italic relative border-2 border-dashed border-primary">
+      <div className="bg-white/80 p-6 rounded-lg shadow-xl max-w-lg text-gray-700 text-left space-y-4 font-body text-lg leading-relaxed relative border-2 border-dashed border-primary">
         <p>
-          "Naya, kamu 20 sekarang… tapi di mataku kamu tetap gadis lucu yang aku sayang sampai kapanpun.
-          Selamat ulang tahun, Sayang 
+          "Naya, sekarang kamu 20. Tapi jujur aja, di mataku kamu tetap orang yang bikin aku nyaman dari hari pertama kita deket.
+          Terima kasih udah selalu ada. Dan selamat ulang tahun, ya."
           <HeartIcon className="w-5 h-5 inline-block text-accent animate-heartBeat" />
-          <HeartIcon className="w-5 h-5 inline-block text-red-400 animate-heartBeat" style={{animationDelay: '0.2s'}} />"
+          <HeartIcon className="w-5 h-5 inline-block text-red-400 animate-heartBeat" style={{animationDelay: '0.2s'}} />
         </p>
-        <p className="text-right font-semibold not-italic text-primary-foreground/80">- Aku yang selalu sayang kamu</p>
+        <p className="text-right font-semibold not-italic text-primary-foreground/80">- Dari seseorang yang sayang kamu, setiap hari</p>
       </div>
 
       <div className="mt-8">
@@ -85,10 +98,11 @@ const PageFive = () => {
           aria-label={isPlaying ? "Pause personal message" : "Play personal message"}
         >
           {isPlaying ? <PauseCircle className="mr-2 h-6 w-6" /> : <Headphones className="mr-2 h-6 w-6" />}
-          {isPlaying ? "Jeda Suara Hatiku" : "Dengarkan Suara Hatiku"}
+          {isPlaying ? "Jeda Pesan Suara" : "Dengerin Pesan Dariku"}
         </Button>
         {!isAudioReady && !error && <p className="text-sm text-muted-foreground mt-2">Memuat pesan suara...</p>}
       </div>
+
       <div className="absolute bottom-4 right-4 font-headline text-sm text-primary-foreground/50">Page 5</div>
     </div>
   );
